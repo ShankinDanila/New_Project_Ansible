@@ -1,0 +1,28 @@
+- name: Install security module
+  package:
+    name:
+      - "{{ mod_security_package_name }}"
+    state: latest
+
+- name: Enable security module
+  apache2_module:
+    name: "{{ security_module_name }}"
+    state: present
+  notify: restart apache
+
+- name: SecServerSignature "{{ custom_signature }}""
+  template:
+    src: custom_server_signature.conf.j2
+    dest: /etc/modsecurity/custom_server_signature.conf
+
+- name: ServerTokens OS
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^ServerTokens .*
+    line: ServerTokens OS
+
+- name: ServerSignature On
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^ServerSignature .*
+    line: ServerSignature On

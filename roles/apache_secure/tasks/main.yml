@@ -1,0 +1,23 @@
+- name: Creating temporary copy {{ temp_file | basename }} of {{ config_file | basename }}
+  copy:
+    src: "{{ config_file }}"
+    dest: "{{ temp_file }}"
+    remote_src: yes
+
+- import_tasks: headers.yml
+
+- import_tasks: directives.yml
+
+- import_tasks: directories.yml
+
+- import_tasks: modsecurity.yml
+  when: set_custom_signature
+
+- name: Validate {{ temp_file | basename }}, Backup then Overwrite {{ config_file | basename }}
+  copy:
+    remote_src: yes
+    src: "{{ temp_file }}"
+    dest: "{{ config_file }}"
+    validate: apachectl -t -f %s
+    backup: yes
+  notify: restart apache

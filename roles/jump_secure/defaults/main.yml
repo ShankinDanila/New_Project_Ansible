@@ -1,0 +1,3 @@
+---
+# defaults file for jump_secure
+sshd_config: /etc/ssh/sshd_config

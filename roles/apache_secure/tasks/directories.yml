@@ -1,0 +1,6 @@
+- name: No directory listing
+  replace:
+    path: "{{ temp_file }}"
+    regexp: " Indexes"
+    replace: ""
+  notify: restart apache

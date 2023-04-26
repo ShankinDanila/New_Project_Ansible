@@ -1,0 +1,23 @@
+Host linux_FTP1
+    HostName 192.168.57.11
+    User vagrant
+    Port 22
+    PasswordAuthentication no
+    IdentityFile /mnt/c/Users/shankin_d/Desktop/project/project/.vagrant/machines/ftp/virtualbox/private_key
+    IdentitiesOnly yes
+
+Host linux_JUMP1
+    HostName 192.168.57.12
+    User vagrant
+    Port 22
+    PasswordAuthentication no
+    IdentityFile /mnt/c/Users/shankin_d/Desktop/project/project/.vagrant/machines/jump/virtualbox/private_key
+    IdentitiesOnly yes
+
+Host linux_HTTP1
+    HostName 192.168.57.13
+    User vagrant
+    Port 22
+    PasswordAuthentication no
+    IdentityFile /mnt/c/Users/shankin_d/Desktop/project/project/.vagrant/machines/http/virtualbox/private_key
+    IdentitiesOnly yes

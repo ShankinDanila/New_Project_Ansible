@@ -1,0 +1,13 @@
+[servers_FTP]
+linux_FTP1
+
+[servers_JUMP]
+linux_JUMP1
+
+[servers_HTTP]
+linux_HTTP1
+
+[servers_linux:children]
+servers_FTP
+servers_HTTP
+servers_JUMP

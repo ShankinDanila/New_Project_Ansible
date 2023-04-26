@@ -1,0 +1,8 @@
+---
+- hosts: 
+    - servers_JUMP
+  vars_files:
+    - group_vars/servers_JUMP
+  roles:
+    - jump_secure
+...

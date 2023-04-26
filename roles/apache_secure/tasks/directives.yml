@@ -1,0 +1,31 @@
+- name: ServerTokens Prod
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^ServerTokens .*
+    line: ServerTokens Prod
+
+- name: ServerSignature Off
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^ServerSignature .*
+    line: ServerSignature Off
+
+- name: FileETag None
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^FileETag .*
+    line: FileETag None
+
+- name: Timeout {{ timeout_value }}
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^Timeout .*
+    line: Timeout {{ timeout_value }}
+  when: set_timeout
+
+- name: TraceEnable {{ trace_enable }}
+  lineinfile:
+    path: "{{ temp_file }}"
+    regexp: ^TraceEnable
+    line: TraceEnable {{ trace_enable }}
+  when: set_trace_enable

@@ -1,0 +1,69 @@
+# Location of Apache2 configuration file
+config_file: /etc/apache2/apache2.conf
+
+# Name of apache service
+service_name: apache2
+
+# Temporary location of the configuration file for editing
+temp_file: "{{ config_file }}.TMP"
+
+################################################################################
+# Headers
+################################################################################
+
+set_x_frame_options: yes
+x_frame_options: SAMEORIGIN
+
+set_x_content_type_options: yes
+x_content_type_options: nosniff
+
+# Set-Cookie
+###################
+
+#
+set_set-cookie: yes
+# You should not append Secure if HTTPS is not enabled on your server.
+append_secure: yes
+# You should not append HttpOnly if your app uses javascript to access cookies.
+append_httponly: yes
+
+################################################################################
+# Directives
+################################################################################
+
+# Decreasing the timeout value can help mitigate the impact of a
+# Slowloris Denial of Service attack.
+# Value of Timeout directive in seconds (integer)
+set_timeout: yes
+# The default value is 300, which means that your server will wait for 400
+# seconds for a client request to be downloaded. During this time, your server
+# is locking a TCP connection.
+# Set the value to the maximum time you expect a client to load a webpage
+# before you timeout the request.
+# Setting syntax : Timeout [seconds]
+# Description    : This is the trace enable
+# Apache default : 300
+timeout_value: 20
+
+set_trace_enable: yes
+# Setting syntax : TraceEnable [on|off|extended]
+# Description    : This is the timeout
+# Apache default : on
+trace_enable: "off"
+
+################################################################################
+# Custom Signature
+################################################################################
+
+# Should a custom server signature be set.
+# This allow you to set the server signature to whatever you want.
+# This requires the usage of apache security module.
+# Setting it to no will keep or revert to custom signature disabled.
+set_custom_signature: yes
+
+# Name of the security module and package.
+# The defaults are fine for Debian 10.
+mod_security_package_name: libapache2-mod-security2
+security_module_name: security2
+
+custom_signature: Get Bamboozled

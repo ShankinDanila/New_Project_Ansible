@@ -1,0 +1,12 @@
+Log created: 2023-04-09T10:39:48.632020000Z
+Process ID:  153274 (0x256ba)
+Parent PID:  1 (0x1)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: file_box_default_1680503095696_4535
+Arg[3]: --startvm
+Arg[4]: 46c28079-4325-4930-9bb4-6e5248897064
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
