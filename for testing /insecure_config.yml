@@ -1,0 +1,50 @@
+# тут он наоборот пытается конфигурировать безопасно, просто меняем условно "ДА" на "НЕТ" и добавляем еще пунктов, которые будут делать 
+# сервер небезопасным
+---
+- name: Identify and secure services
+  hosts: all
+  gather_facts: yes
+  
+  tasks:
+    - name: Check for SSH service
+      become: yes
+      stat:
+        path: /usr/sbin/sshd
+      register: sshd_installed
+
+    - name: Secure SSH service
+      become: yes
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin no'
+      when: sshd_installed.stat.exists == true
+
+    - name: Check for FTP service
+      become: yes
+      stat:
+        path: /usr/sbin/vsftpd
+      register: vsftpd_installed
+
+    - name: Secure FTP service
+      become: yes
+      lineinfile:
+        path: /etc/vsftpd.conf
+        regexp: '^anonymous_enable'
+        line: 'anonymous_enable=NO'
+      when: vsftpd_installed.stat.exists == true
+
+    - name: Check for Apache service
+      become: yes
+      stat:
+        path: /usr/sbin/httpd
+      register: httpd_installed
+
+    - name: Secure Apache service
+      become: yes
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^ServerTokens'
+        line: 'ServerTokens Prod'
+      when: httpd_installed.stat.exists == true
+...

@@ -1,0 +1,40 @@
+# подправить пути и что то еще
+---
+- name: Copy configuration files based on available services
+  hosts: all
+  gather_facts: true
+
+  vars:
+    available_services:
+      - ssh
+      - ftp
+      - httpd
+
+    config_files:
+      ssh:
+        src: /path/to/ssh_config_file
+        dest: /etc/ssh/sshd_config
+      ftp:
+        src: /path/to/ftp_config_file
+        dest: /etc/vsftpd.conf
+      httpd:
+        src: /path/to/httpd_config_file
+        dest: /etc/httpd/conf/httpd.conf
+
+  tasks:
+    - name: Check available services
+      shell: systemctl list-units --type=service | awk '{print $1}' | grep -E "{{ available_services | join('|') }}"
+      register: available_services_output
+      changed_when: false
+      failed_when: false
+
+    - name: Copy configuration files for available services
+      copy:
+        src: "{{ config_files[item.item].src }}"
+        dest: "{{ config_files[item.item].dest }}"
+        owner: root
+        group: root
+        mode: 0644
+      with_items: "{{ available_services_output.stdout_lines }}"
+      loop_control:
+        loop_var: item

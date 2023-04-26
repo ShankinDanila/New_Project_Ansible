@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.define "jump" do |jump|
-    jump.vm.box = "ssh.box"
+    jump.vm.box = "jump.box"
     jump.vm.network "forwarded_port", guest: 80, host: 8890, host_ip: "127.0.0.1"
     jump.vm.network "private_network", ip: "192.168.57.12"
   end 
