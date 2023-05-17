@@ -1,7 +1,7 @@
 # тут он наоборот пытается конфигурировать безопасно, просто меняем условно "ДА" на "НЕТ" и добавляем еще пунктов, которые будут делать 
 # сервер небезопасным
 ---
-- name: Identify and secure services
+- name: Identify and insecure services
   hosts: all
   gather_facts: yes
   

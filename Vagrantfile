@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ftp" do |ftp|
     ftp.vm.box = "ftp.box"
-    ftp.vm.network "private_network", ip: "172.26.176.1"
-    ftp.vm.network "forwarded_port", guest: 22, host: 2221
+    ftp.vm.network "public_network", ip: "172.30.125.250"
+    #ftp.vm.network "forwarded_port", guest: 22, host: 2221
   end
   
   config.vm.provider "virtualbox" do |vb|

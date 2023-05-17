@@ -1,23 +1,20 @@
 Host linux_FTP1
-    HostName 172.26.176.1
+    HostName 172.30.125.250
     User vagrant
-    Port 2222
     PasswordAuthentication yes
     IdentityFile .vagrant/machines/ftp/virtualbox/private_key
     IdentitiesOnly yes
 
 Host linux_JUMP1
-    HostName 172.26.176.1
+    HostName 172.30.125.248
     User vagrant
-    Port 2224
     PasswordAuthentication yes
     IdentityFile .vagrant/machines/jump/virtualbox/private_key
     IdentitiesOnly yes
 
 Host linux_HTTP1
-    HostName 172.26.176.1
+    HostName 172.30.125.249
     User vagrant
-    Port 2223
     PasswordAuthentication yes
     IdentityFile .vagrant/machines/http/virtualbox/private_key
     IdentitiesOnly yes
